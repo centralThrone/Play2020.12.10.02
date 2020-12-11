@@ -11,6 +11,8 @@ public interface UserLineTableService {
 
     List<UserLineTable> likeFName(String columnName,Object o);
 
+    boolean oneUserOneProject(Long userId,Long lineId);
+
     int insert(UserLineTable record);
 
     int updateById(UserLineTable record);

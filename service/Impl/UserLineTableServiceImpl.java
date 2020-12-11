@@ -7,7 +7,9 @@ import com.happy.service.UserLineTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserLineTableServiceImpl implements UserLineTableService {
@@ -26,6 +28,13 @@ public class UserLineTableServiceImpl implements UserLineTableService {
     @Override
     public List<UserLineTable> likeFName(String columnName,Object o) {
         return mapper.selectList(new QueryWrapper<UserLineTable>().like(columnName,o));
+    }
+
+    public boolean oneUserOneProject(Long userId, Long lineId) {
+        Map<String, Object> columnMap = new HashMap<String, Object>();
+        columnMap.put("user_id",userId);
+        columnMap.put("l_id",lineId);
+        return  mapper.selectByMap(columnMap).size()!=0;
     }
     @Override
     public int insert(UserLineTable record) {

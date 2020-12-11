@@ -28,6 +28,7 @@ public class FacilitiesTableController {
         List<Project> list=projectService.selectAll();
         if(list.size()==0){
             model.addAttribute("fail","查询失败");
+            return "fail";
         }
         model.addAttribute("list",list);
         return "index";
